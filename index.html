@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ADEVO — Commercial Interior Design & Build Solutions | Singapore</title>
+<meta name="description" content="ADEVO designs and builds functional commercial interiors for Singapore businesses — improving operational flow, customer experience and long-term usability." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#FF9500',
+            50:  '#FFF5E6',
+            100: '#FFE8C2',
+            200: '#FFD085',
+            300: '#FFB84D',
+            400: '#FFA31F',
+            500: '#FF9500',
+            600: '#E07D00',
+            700: '#B36300',
+            800: '#804700',
+            900: '#5C3300'
+          }
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif; }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    80%, 100% { transform: scale(1.6); opacity: 0; }
+  }
+  .pulse-ring::before {
+    content: "";
+    position: absolute; inset: 0; border-radius: 9999px;
+    background-color: #22c55e;
+    animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    z-index: -1;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track { animation: marquee 35s linear infinite; }
+  .marquee-track-rev { animation: marquee 40s linear infinite reverse; }
+
+  /* Typing caret */
+  .caret {
+    display: inline-block;
+    width: 4px;
+    background: #FF9500;
+    margin-left: 6px;
+    animation: blink 1s steps(2) infinite;
+    vertical-align: -0.1em;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Reveal-on-scroll */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-left.in { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-right.in { opacity: 1; transform: translateX(0); }
+  .reveal-zoom { opacity: 0; transform: scale(0.94); transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-zoom.in { opacity: 1; transform: scale(1); }
+  .stagger > * { transition-delay: var(--d, 0ms); }
+
+  /* Subtle gradient backdrop */
+  .bg-grid-light {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .bg-radial-warm {
+    background: radial-gradient(1200px 600px at 0% 0%, #FFF5E6 0%, transparent 60%),
+                radial-gradient(1000px 500px at 100% 100%, #FFE8C2 0%, transparent 55%),
+                #ffffff;
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .float-slow { animation: float-slow 6s ease-in-out infinite; }
+</style>
+</head>
+<body class="bg-white text-neutral-900 antialiased">
+
+<!-- NAVIGATION -->
+<header class="fixed top-0 inset-x-0 z-50 bg-neutral-950/80 backdrop-blur-md border-b border-white/10">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center">
+      <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/white-logo-bg-transparent.png?updatedAt=1779785596861" alt="ADEVO" class="h-7 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-9 text-sm font-medium text-neutral-300">
+      <li><a href="#services" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Services</a></li>
+      <li><a href="#projects" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Projects</a></li>
+      <li><a href="#process" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Process</a></li>
+      <li><a href="#contact" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/6500000000" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-brand text-white px-4 py-2 text-sm font-semibold rounded-sm hover:bg-brand-400 hover:shadow-lg hover:shadow-brand/30 transition-all duration-200">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.555-5.338 11.89-11.893 11.89a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      WhatsApp Us
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center pt-16">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920&auto=format&fit=crop" alt="" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32 w-full">
+    <div class="max-w-5xl">
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-6 reveal in">Singapore · Design & Build</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+        <span class="block">Commercial Interior</span>
+        <span class="block">Design & Build</span>
+        <span class="block mt-2">
+          <span class="text-neutral-300 font-light">for</span>
+          <span id="typed" class="text-brand"></span><span class="caret h-[0.9em]"></span>
+        </span>
+      </h1>
+      <p class="mt-7 text-lg lg:text-xl text-neutral-300 max-w-2xl leading-relaxed">
+        Designing functional commercial spaces that improve operational flow, customer experience and long-term business usability.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="group inline-flex items-center justify-center gap-2 bg-brand text-white px-7 py-4 font-semibold rounded-sm hover:bg-brand-400 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-brand/40 transition-all duration-300">
+          Discuss Your Project
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://wa.me/6500000000" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/50 text-white px-7 py-4 font-semibold rounded-sm hover:bg-white hover:text-neutral-950 hover:-translate-y-0.5 transition-all duration-300">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 inset-x-0 border-t border-white/10 bg-black/50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-neutral-200 text-sm">
+      <div class="font-medium"><span class="text-brand font-bold">15+</span> Years Experience</div>
+      <div class="font-medium md:border-l md:border-white/10"><span class="text-brand font-bold">250+</span> Projects Delivered</div>
+      <div class="font-medium md:border-l md:border-white/10">Design & Build Expertise</div>
+      <div class="font-medium md:border-l md:border-white/10">Singapore-Based Team</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATION STRIP -->
+<section class="bg-white border-b border-neutral-200">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 py-10 flex justify-center">
+    <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/accreditation-1024x67.png?updatedAt=1779785596752" alt="Accreditations" class="w-full max-w-4xl h-auto opacity-90" />
+  </div>
+</section>
+
+<!-- TRUST / CLIENT LOGOS -->
+<section class="py-20 lg:py-24 bg-radial-warm border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Our Clients</p>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Trusted By Businesses Across Singapore</h2>
+      <div class="mt-4 mx-auto w-16 h-1 bg-brand"></div>
+    </div>
+  </div>
+  <div class="space-y-8 overflow-hidden">
+    <div class="overflow-hidden">
+      <div class="flex marquee-track w-max">
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/Collab-1.png?updatedAt=1779785597032" alt="Client logos" class="h-20 w-auto max-w-none grayscale hover:grayscale-0 transition-all duration-500" />
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/Collab-1.png?updatedAt=1779785597032" alt="" aria-hidden="true" class="h-20 w-auto max-w-none grayscale hover:grayscale-0 transition-all duration-500" />
+      </div>
+    </div>
+    <div class="overflow-hidden">
+      <div class="flex marquee-track-rev w-max">
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/Collab-2.png?updatedAt=1779785597442" alt="Client logos" class="h-20 w-auto max-w-none grayscale hover:grayscale-0 transition-all duration-500" />
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/Collab-2.png?updatedAt=1779785597442" alt="" aria-hidden="true" class="h-20 w-auto max-w-none grayscale hover:grayscale-0 transition-all duration-500" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section id="projects" class="py-24 lg:py-32 bg-white relative overflow-hidden">
+  <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-brand-100 blur-3xl opacity-60 float-slow"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14 gap-6">
+      <div class="reveal-left">
+        <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Portfolio</p>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight max-w-2xl">Selected Commercial <span class="text-brand">Projects</span></h2>
+        <div class="mt-4 w-16 h-1 bg-brand"></div>
+      </div>
+      <a href="#" class="reveal-right inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 border-b-2 border-brand pb-1 hover:gap-3 hover:text-brand transition-all duration-300">
+        View Full Case Studies
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger">
+      <!-- Card 1 -->
+      <a href="#" class="group block rounded-sm overflow-hidden bg-white border border-neutral-200 hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-500 reveal">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=1600&auto=format&fit=crop" alt="Sembawang Country Club" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
+        <div class="p-7">
+          <p class="text-xs uppercase tracking-widest text-brand mb-2 font-semibold">Hospitality / Club</p>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-brand transition-colors">Sembawang Country Club</h3>
+          <p class="text-neutral-600 leading-relaxed text-sm">Interior enhancement designed to improve event usability, member experience and venue rental opportunities.</p>
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a href="#" class="group block rounded-sm overflow-hidden bg-white border border-neutral-200 hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-500 reveal">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="raiSE Singapore" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
+        <div class="p-7">
+          <p class="text-xs uppercase tracking-widest text-brand mb-2 font-semibold">Workspace / Co-Working</p>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-brand transition-colors">raiSE Singapore</h3>
+          <p class="text-neutral-600 leading-relaxed text-sm">Collaborative workspace planned to support startup engagement, flexibility and operational efficiency.</p>
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a href="#" class="group block rounded-sm overflow-hidden bg-white border border-neutral-200 hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-500 reveal">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop" alt="SMG Mt Alvernia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
+        <div class="p-7">
+          <p class="text-xs uppercase tracking-widest text-brand mb-2 font-semibold">Healthcare</p>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-brand transition-colors">SMG Mt Alvernia</h3>
+          <p class="text-neutral-600 leading-relaxed text-sm">Healthcare environment designed around patient comfort, staff workflow and functional space planning.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ADEVO -->
+<section id="services" class="py-24 lg:py-32 bg-neutral-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-30 pointer-events-none">
+    <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-brand/30 blur-3xl float-slow"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand/10 blur-3xl"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="max-w-3xl mb-16 reveal">
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Why ADEVO</p>
+      <h2 class="text-3xl lg:text-5xl font-bold tracking-tight">Built Around <span class="text-brand">Business Functionality</span></h2>
+      <div class="mt-4 w-16 h-1 bg-brand"></div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+      <div class="reveal group bg-neutral-900 border border-white/10 p-8 rounded-sm hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 hover:border-brand transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-brand text-white mb-6 font-bold rounded-sm group-hover:scale-110 transition-transform">01</div>
+        <h3 class="text-lg font-semibold mb-3">Design + Build Integration</h3>
+        <p class="text-sm text-neutral-400 leading-relaxed">Single point of accountability from concept planning to construction execution.</p>
+      </div>
+      <div class="reveal group bg-neutral-900 border border-white/10 p-8 rounded-sm hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 hover:border-brand transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-brand text-white mb-6 font-bold rounded-sm group-hover:scale-110 transition-transform">02</div>
+        <h3 class="text-lg font-semibold mb-3">Commercial Workflow Expertise</h3>
+        <p class="text-sm text-neutral-400 leading-relaxed">Spaces planned around operational movement, customer experience and staff efficiency.</p>
+      </div>
+      <div class="reveal group bg-neutral-900 border border-white/10 p-8 rounded-sm hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 hover:border-brand transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-brand text-white mb-6 font-bold rounded-sm group-hover:scale-110 transition-transform">03</div>
+        <h3 class="text-lg font-semibold mb-3">Compliance & Coordination</h3>
+        <p class="text-sm text-neutral-400 leading-relaxed">Experienced in handling healthcare, commercial and technical coordination requirements.</p>
+      </div>
+      <div class="reveal group bg-neutral-900 border border-white/10 p-8 rounded-sm hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 hover:border-brand transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-brand text-white mb-6 font-bold rounded-sm group-hover:scale-110 transition-transform">04</div>
+        <h3 class="text-lg font-semibold mb-3">Minimal Operational Disruption</h3>
+        <p class="text-sm text-neutral-400 leading-relaxed">Structured project planning designed to reduce downtime during renovation works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="py-24 lg:py-32 bg-radial-warm relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="max-w-3xl mb-16 reveal">
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Methodology</p>
+      <h2 class="text-3xl lg:text-5xl font-bold tracking-tight">Our Design & Build <span class="text-brand">Process</span></h2>
+      <div class="mt-4 w-16 h-1 bg-brand"></div>
+    </div>
+    <div class="grid md:grid-cols-5 gap-px bg-neutral-200 border border-neutral-200">
+      <div class="reveal-zoom bg-white p-8 hover:bg-neutral-950 hover:text-white transition-all duration-300 group hover:shadow-2xl hover:shadow-brand/30 hover:-translate-y-1">
+        <div class="text-5xl font-bold text-brand group-hover:text-brand transition-colors mb-6">01</div>
+        <h3 class="font-semibold mb-2">Consultation & Site Study</h3>
+        <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">Understanding requirements, scope and site conditions.</p>
+      </div>
+      <div class="reveal-zoom bg-white p-8 hover:bg-neutral-950 hover:text-white transition-all duration-300 group hover:shadow-2xl hover:shadow-brand/30 hover:-translate-y-1">
+        <div class="text-5xl font-bold text-brand group-hover:text-brand transition-colors mb-6">02</div>
+        <h3 class="font-semibold mb-2">Space Planning & Concept Development</h3>
+        <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">Layouts and design concepts aligned to operations.</p>
+      </div>
+      <div class="reveal-zoom bg-white p-8 hover:bg-neutral-950 hover:text-white transition-all duration-300 group hover:shadow-2xl hover:shadow-brand/30 hover:-translate-y-1">
+        <div class="text-5xl font-bold text-brand group-hover:text-brand transition-colors mb-6">03</div>
+        <h3 class="font-semibold mb-2">Budget & Timeline Alignment</h3>
+        <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">Transparent scope, costing and project scheduling.</p>
+      </div>
+      <div class="reveal-zoom bg-white p-8 hover:bg-neutral-950 hover:text-white transition-all duration-300 group hover:shadow-2xl hover:shadow-brand/30 hover:-translate-y-1">
+        <div class="text-5xl font-bold text-brand group-hover:text-brand transition-colors mb-6">04</div>
+        <h3 class="font-semibold mb-2">Construction & Project Coordination</h3>
+        <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">On-site delivery managed by a dedicated team.</p>
+      </div>
+      <div class="reveal-zoom bg-white p-8 hover:bg-neutral-950 hover:text-white transition-all duration-300 group hover:shadow-2xl hover:shadow-brand/30 hover:-translate-y-1">
+        <div class="text-5xl font-bold text-brand group-hover:text-brand transition-colors mb-6">05</div>
+        <h3 class="font-semibold mb-2">Handover & Post-Completion Support</h3>
+        <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">Final walkthrough, defect rectification and aftercare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS OUTCOMES -->
+<section class="py-24 lg:py-32 bg-white border-y border-neutral-200 relative overflow-hidden">
+  <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-brand-100 blur-3xl opacity-70"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5 reveal-left">
+        <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Outcomes</p>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight leading-tight">Designed For Real <span class="text-brand">Business Outcomes</span></h2>
+        <div class="mt-4 w-16 h-1 bg-brand"></div>
+        <p class="mt-6 text-neutral-600 leading-relaxed">Every project is measured against the operational and commercial outcomes that matter to your business.</p>
+      </div>
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-px bg-neutral-200 border border-neutral-200 stagger reveal-right">
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Increased Venue Rental Opportunities</h3>
+          <p class="text-sm text-neutral-500">Spaces optimized for revenue-generating use.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Improved Workspace Collaboration</h3>
+          <p class="text-sm text-neutral-500">Layouts that encourage team interaction.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Better Operational Workflow</h3>
+          <p class="text-sm text-neutral-500">Movement patterns matched to daily operations.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Enhanced Customer Experience</h3>
+          <p class="text-sm text-neutral-500">Interiors that reinforce service delivery.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Efficient Space Utilization</h3>
+          <p class="text-sm text-neutral-500">Maximising usable area per square foot.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-brand-50 hover:border-l-4 hover:border-brand transition-all duration-300 border-l-4 border-transparent">
+          <h3 class="font-semibold mb-1">Reduced Coordination Complexity</h3>
+          <p class="text-sm text-neutral-500">A single team accountable end-to-end.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24 lg:py-32 bg-radial-warm relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Testimonials</p>
+      <h2 class="text-3xl lg:text-5xl font-bold tracking-tight">What <span class="text-brand">Clients Say</span></h2>
+      <div class="mt-4 mx-auto w-16 h-1 bg-brand"></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 stagger">
+      <div class="reveal border border-neutral-200 p-8 rounded-sm hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-300 bg-white relative group">
+        <div class="absolute top-0 left-0 w-0 h-1 bg-brand group-hover:w-full transition-all duration-500"></div>
+        <div class="flex gap-1 text-brand mb-5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+        </div>
+        <p class="text-neutral-700 leading-relaxed mb-8">"[Testimonial quote focusing on operational reliability, coordination quality and on-time delivery of the commercial project.]"</p>
+        <div class="border-t border-neutral-200 pt-5">
+          <p class="font-semibold">[Client Name]</p>
+          <p class="text-sm text-neutral-500">[Position], [Company Name] — [Category]</p>
+        </div>
+      </div>
+      <div class="reveal border border-neutral-200 p-8 rounded-sm hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-300 bg-white relative group">
+        <div class="absolute top-0 left-0 w-0 h-1 bg-brand group-hover:w-full transition-all duration-500"></div>
+        <div class="flex gap-1 text-brand mb-5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+        </div>
+        <p class="text-neutral-700 leading-relaxed mb-8">"[Testimonial quote focusing on minimal disruption to ongoing operations during the fit-out and clear communication throughout.]"</p>
+        <div class="border-t border-neutral-200 pt-5">
+          <p class="font-semibold">[Client Name]</p>
+          <p class="text-sm text-neutral-500">[Position], [Company Name] — [Category]</p>
+        </div>
+      </div>
+      <div class="reveal border border-neutral-200 p-8 rounded-sm hover:-translate-y-2 hover:shadow-2xl hover:border-brand transition-all duration-300 bg-white relative group">
+        <div class="absolute top-0 left-0 w-0 h-1 bg-brand group-hover:w-full transition-all duration-500"></div>
+        <div class="flex gap-1 text-brand mb-5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+        </div>
+        <p class="text-neutral-700 leading-relaxed mb-8">"[Testimonial quote focusing on functional space planning that supported staff workflow and improved customer experience.]"</p>
+        <div class="border-t border-neutral-200 pt-5">
+          <p class="font-semibold">[Client Name]</p>
+          <p class="text-sm text-neutral-500">[Position], [Company Name] — [Category]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="relative py-24 lg:py-32 bg-neutral-950 text-white overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?q=80&w=1920&auto=format&fit=crop" alt="" class="w-full h-full object-cover" />
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-br from-brand/30 via-transparent to-brand/10"></div>
+  <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand/30 rounded-full blur-3xl float-slow"></div>
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-10 text-center reveal-zoom">
+    <p class="text-xs uppercase tracking-[0.3em] text-brand mb-4">Let's Build Together</p>
+    <h2 class="text-3xl lg:text-5xl font-bold tracking-tight leading-tight">Planning A Commercial Renovation Or <span class="text-brand">New Workspace?</span></h2>
+    <p class="mt-6 text-lg text-neutral-300 max-w-2xl mx-auto">Speak with our team for a consultation and project assessment.</p>
+    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="https://wa.me/6500000000" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-brand text-white px-7 py-4 font-semibold rounded-sm hover:bg-brand-400 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-brand/40 transition-all duration-300">
+        WhatsApp Our Team
+      </a>
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-white text-neutral-950 px-7 py-4 font-semibold rounded-sm hover:bg-neutral-200 hover:-translate-y-0.5 transition-all duration-300">
+        Request Proposal
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <!-- Form -->
+      <div class="reveal-left">
+        <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Get In Touch</p>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Tell Us About Your <span class="text-brand">Project</span></h2>
+        <div class="mb-8 w-16 h-1 bg-brand"></div>
+        <form class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Name</label>
+              <input type="text" class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Company</label>
+              <input type="text" class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Email</label>
+              <input type="email" class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Phone</label>
+              <input type="tel" class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Project Type</label>
+            <select class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all bg-white">
+              <option>Office / Workspace</option>
+              <option>Healthcare</option>
+              <option>Hospitality / F&B</option>
+              <option>Retail</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-neutral-600 mb-2 uppercase tracking-wider">Message</label>
+            <textarea rows="5" class="w-full border border-neutral-300 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all"></textarea>
+          </div>
+          <button type="submit" class="group inline-flex items-center justify-center gap-2 bg-brand text-white px-7 py-4 font-semibold rounded-sm hover:bg-brand-400 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-brand/40 transition-all duration-300 w-full sm:w-auto">
+            Submit Enquiry
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div class="lg:pl-8 reveal-right">
+        <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Contact Information</p>
+        <h3 class="text-2xl font-bold mb-3">Reach Our <span class="text-brand">Team</span></h3>
+        <div class="mb-8 w-16 h-1 bg-brand"></div>
+        <div class="space-y-6 mb-10">
+          <div class="flex items-start gap-4 p-5 border border-neutral-200 rounded-sm hover:bg-neutral-50 transition-colors">
+            <div class="w-10 h-10 bg-green-500 text-white flex items-center justify-center rounded-sm shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.555-5.338 11.89-11.893 11.89a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-neutral-500 mb-1">WhatsApp</p>
+              <a href="https://wa.me/6500000000" class="font-semibold hover:underline">[+65 0000 0000]</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-5 border border-neutral-200 rounded-sm hover:bg-brand-50 hover:border-brand transition-all hover:-translate-y-0.5 duration-300 group">
+            <div class="w-10 h-10 bg-brand text-white flex items-center justify-center rounded-sm shrink-0 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Email</p>
+              <a href="mailto:hello@adevo.sg" class="font-semibold hover:underline">[hello@adevo.sg]</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-5 border border-neutral-200 rounded-sm hover:bg-brand-50 hover:border-brand transition-all hover:-translate-y-0.5 duration-300 group">
+            <div class="w-10 h-10 bg-brand text-white flex items-center justify-center rounded-sm shrink-0 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Office</p>
+              <p class="font-semibold">[Office Address Line 1]<br/>[Singapore Postal Code]</p>
+            </div>
+          </div>
+        </div>
+        <div class="aspect-[16/10] bg-neutral-100 border border-neutral-200 rounded-sm flex items-center justify-center text-neutral-400 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          <div class="relative flex flex-col items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-10 h-10 mb-2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="uppercase tracking-widest text-xs">[Google Maps Placeholder]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-neutral-950 text-neutral-400 relative overflow-hidden">
+<div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <div>
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/white-logo-bg-transparent.png?updatedAt=1779785596861" alt="ADEVO" class="h-8 w-auto mb-5" />
+        <p class="text-sm leading-relaxed">Have a commercial project in mind? Let's discuss it.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Services</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#" class="hover:text-brand transition-colors">Commercial Interior Design</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Design & Build</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Space Planning</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Project Coordination</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Industries</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#" class="hover:text-brand transition-colors">Healthcare</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Workspace / Office</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Hospitality</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">Retail & F&B</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li>[hello@adevo.sg]</li>
+          <li>[+65 0000 0000]</li>
+          <li>[Office Address, Singapore]</li>
+        </ul>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-white hover:text-neutral-950 transition-colors rounded-sm" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-white hover:text-neutral-950 transition-colors rounded-sm" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-white hover:text-neutral-950 transition-colors rounded-sm" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0022 12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-neutral-500">
+      <p>© <span id="year"></span> ADEVO. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-brand transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/6500000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   class="fixed bottom-6 right-6 z-[100] w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:bg-green-400 transition-all duration-300 pulse-ring">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.555-5.338 11.89-11.893 11.89a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Typing effect ---------- */
+  (function () {
+    const target = document.getElementById('typed');
+    if (!target) return;
+    const words = [
+      'F&B Outlets',
+      'Medical Centres',
+      'Corporate Offices',
+      'Co-Working Spaces',
+      'Healthcare Clinics',
+      'Hospitality Venues',
+      'Retail Stores'
+    ];
+    let wi = 0, ci = 0, deleting = false;
+    function tick() {
+      const word = words[wi];
+      if (!deleting) {
+        ci++;
+        target.textContent = word.slice(0, ci);
+        if (ci === word.length) { deleting = true; return setTimeout(tick, 1600); }
+        setTimeout(tick, 70 + Math.random() * 40);
+      } else {
+        ci--;
+        target.textContent = word.slice(0, ci);
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(tick, 250); }
+        setTimeout(tick, 35);
+      }
+    }
+    tick();
+  })();
+
+  /* ---------- Scroll reveal ---------- */
+  (function () {
+    const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
+    // Stagger children inside .stagger containers
+    document.querySelectorAll('.stagger').forEach(group => {
+      [...group.children].forEach((child, i) => {
+        child.style.setProperty('--d', (i * 100) + 'ms');
+        child.style.transitionDelay = (i * 100) + 'ms';
+      });
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
