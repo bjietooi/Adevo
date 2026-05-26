@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ADEVO — Commercial Interior Design & Build Solutions | Singapore</title>
-<meta name="description" content="ADEVO designs and builds functional commercial interiors for Singapore businesses — improving operational flow, customer experience and long-term usability." />
+<title>ADEVO — Commercial Interior Design & Build Solutions | Singapore & Malaysia</title>
+<meta name="description" content="ADEVO designs and builds functional commercial interiors for businesses across Singapore and Malaysia — improving operational flow, customer experience and long-term usability." />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -92,38 +92,191 @@
     50% { transform: translateY(-10px); }
   }
   .float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+  /* Header enhancements */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .top-bar-shimmer {
+    background: linear-gradient(90deg, #FF9500 0%, #FFB84D 25%, #FF9500 50%, #FFB84D 75%, #FF9500 100%);
+    background-size: 200% 100%;
+    animation: shimmer 6s linear infinite;
+  }
+  .nav-shrink {
+    height: 4rem !important;
+  }
+  header.scrolled {
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
+  }
+  header.scrolled .nav-inner {
+    height: 4rem;
+  }
+  .nav-inner {
+    height: 5rem;
+    transition: height 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: -2px;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, #FF9500, transparent);
+    transition: width 0.4s cubic-bezier(0.22,1,0.36,1), left 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link:hover::before {
+    width: 100%; left: 0;
+  }
+  .nav-link .dot {
+    position: absolute;
+    left: 50%; top: -8px;
+    width: 4px; height: 4px;
+    background: #FF9500;
+    border-radius: 9999px;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .nav-link:hover .dot { transform: translateX(-50%) scale(1); }
+
+  .cta-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-shine::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+  }
+  .cta-shine:hover::after { left: 125%; }
+
+  .logo-glow {
+    filter: drop-shadow(0 0 0 rgba(255,149,0,0));
+    transition: filter 0.4s ease, transform 0.4s ease;
+  }
+  .logo-glow:hover {
+    filter: drop-shadow(0 0 12px rgba(255,149,0,0.6));
+    transform: scale(1.03);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .live-dot { animation: pulseDot 1.8s ease-in-out infinite; }
+
+  body { padding-top: 0; }
 </style>
 </head>
 <body class="bg-white text-neutral-900 antialiased">
 
 <!-- NAVIGATION -->
-<header class="fixed top-0 inset-x-0 z-50 bg-neutral-950/80 backdrop-blur-md border-b border-white/10">
-  <nav class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-    <a href="#" class="flex items-center">
-      <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/white-logo-bg-transparent.png?updatedAt=1779785596861" alt="ADEVO" class="h-7 w-auto" />
-    </a>
-    <ul class="hidden md:flex items-center gap-9 text-sm font-medium text-neutral-300">
-      <li><a href="#services" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Services</a></li>
-      <li><a href="#projects" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Projects</a></li>
-      <li><a href="#process" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Process</a></li>
-      <li><a href="#contact" class="relative hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full">Contact</a></li>
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <!-- Announcement / Top bar -->
+  <div class="top-bar-shimmer text-white text-[11px]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-7 flex items-center justify-between">
+      <div class="hidden sm:flex items-center gap-5 font-medium">
+        <span class="inline-flex items-center gap-2">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inset-0 rounded-full bg-white live-dot"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
+          Now Booking Q3 Projects
+        </span>
+        <span class="hidden md:inline-flex items-center gap-1.5 opacity-90">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Singapore & Malaysia
+        </span>
+      </div>
+      <div class="flex items-center gap-5 font-medium">
+        <a href="mailto:hello@adevo.sg" class="hidden sm:inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@adevo.sg
+        </a>
+        <a href="tel:+6500000000" class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +65 0000 0000
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="bg-neutral-950/85 backdrop-blur-xl border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-10 nav-inner flex items-center justify-between">
+      <a href="#" class="flex items-center logo-glow">
+        <img src="https://ik.imagekit.io/cr8hodb6q/Adevo/white-logo-bg-transparent.png?updatedAt=1779785596861" alt="ADEVO" class="h-8 w-auto" />
+      </a>
+
+      <ul class="hidden md:flex items-center gap-10 text-[13px] font-semibold tracking-wide uppercase text-neutral-300">
+        <li><a href="#services" class="nav-link hover:text-white transition-colors duration-200">Services<span class="dot"></span></a></li>
+        <li><a href="#projects" class="nav-link hover:text-white transition-colors duration-200">Projects<span class="dot"></span></a></li>
+        <li><a href="#process" class="nav-link hover:text-white transition-colors duration-200">Process<span class="dot"></span></a></li>
+        <li><a href="#contact" class="nav-link hover:text-white transition-colors duration-200">Contact<span class="dot"></span></a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden lg:inline-flex items-center text-[13px] font-semibold tracking-wide uppercase text-neutral-300 hover:text-brand transition-colors">
+          Get Quote
+        </a>
+        <span class="hidden lg:block w-px h-5 bg-white/15"></span>
+        <a href="https://wa.me/6500000000" target="_blank" rel="noopener" class="cta-shine group inline-flex items-center gap-2 bg-brand text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-brand-400 hover:shadow-lg hover:shadow-brand/40 hover:-translate-y-0.5 transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 group-hover:scale-110 transition-transform"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.555-5.338 11.89-11.893 11.89a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span class="hidden sm:inline">WhatsApp Us</span>
+          <span class="sm:hidden">Chat</span>
+        </a>
+        <button id="menu-toggle" aria-label="Menu" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 rounded-sm hover:bg-white/10 transition-colors">
+          <span class="block w-5 h-0.5 bg-white"></span>
+          <span class="block w-5 h-0.5 bg-white"></span>
+          <span class="block w-3 h-0.5 bg-brand ml-auto"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- Bottom accent line -->
+    <div class="h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent"></div>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-menu md:hidden fixed top-0 right-0 bottom-0 w-72 bg-neutral-950 border-l border-brand/30 shadow-2xl z-50">
+    <div class="flex items-center justify-between p-6 border-b border-white/10">
+      <span class="text-white font-bold tracking-widest text-sm">MENU</span>
+      <button id="menu-close" aria-label="Close" class="text-white/70 hover:text-brand text-2xl leading-none">&times;</button>
+    </div>
+    <ul class="flex flex-col p-6 gap-1 text-white">
+      <li><a href="#services" class="block py-3 px-3 hover:bg-white/5 hover:text-brand transition-colors border-l-2 border-transparent hover:border-brand">Services</a></li>
+      <li><a href="#projects" class="block py-3 px-3 hover:bg-white/5 hover:text-brand transition-colors border-l-2 border-transparent hover:border-brand">Projects</a></li>
+      <li><a href="#process" class="block py-3 px-3 hover:bg-white/5 hover:text-brand transition-colors border-l-2 border-transparent hover:border-brand">Process</a></li>
+      <li><a href="#contact" class="block py-3 px-3 hover:bg-white/5 hover:text-brand transition-colors border-l-2 border-transparent hover:border-brand">Contact</a></li>
     </ul>
-    <a href="https://wa.me/6500000000" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-brand text-white px-4 py-2 text-sm font-semibold rounded-sm hover:bg-brand-400 hover:shadow-lg hover:shadow-brand/30 transition-all duration-200">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.555-5.338 11.89-11.893 11.89a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-      WhatsApp Us
-    </a>
-  </nav>
+    <div class="px-6">
+      <a href="https://wa.me/6500000000" class="block text-center bg-brand text-white py-3 font-semibold rounded-sm hover:bg-brand-400 transition-colors">WhatsApp Us</a>
+    </div>
+  </div>
 </header>
 
 <!-- HERO -->
-<section class="relative min-h-screen flex items-center pt-16">
+<section class="relative min-h-screen flex items-center pt-32">
   <div class="absolute inset-0">
     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920&auto=format&fit=crop" alt="" class="w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black/60"></div>
   </div>
   <div class="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32 w-full">
     <div class="max-w-5xl">
-      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-6 reveal in">Singapore · Design & Build</p>
+      <p class="text-xs uppercase tracking-[0.3em] text-brand mb-6 reveal in">Singapore · Malaysia · Design & Build</p>
       <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
         <span class="block">Commercial Interior</span>
         <span class="block">Design & Build</span>
@@ -148,10 +301,10 @@
   </div>
   <div class="absolute bottom-0 inset-x-0 border-t border-white/10 bg-black/50 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-neutral-200 text-sm">
-      <div class="font-medium"><span class="text-brand font-bold">15+</span> Years Experience</div>
-      <div class="font-medium md:border-l md:border-white/10"><span class="text-brand font-bold">250+</span> Projects Delivered</div>
+      <div class="font-medium"><span class="text-brand font-bold counter" data-target="15" data-suffix="+">0</span> Years Experience</div>
+      <div class="font-medium md:border-l md:border-white/10"><span class="text-brand font-bold counter" data-target="250" data-suffix="+">0</span> Projects Delivered</div>
       <div class="font-medium md:border-l md:border-white/10">Design & Build Expertise</div>
-      <div class="font-medium md:border-l md:border-white/10">Singapore-Based Team</div>
+      <div class="font-medium md:border-l md:border-white/10">Singapore & Malaysia Coverage</div>
     </div>
   </div>
 </section>
@@ -168,7 +321,7 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="text-center mb-12 reveal">
       <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Our Clients</p>
-      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Trusted By Businesses Across Singapore</h2>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Trusted By Businesses Across <span class="text-brand">Singapore & Malaysia</span></h2>
       <div class="mt-4 mx-auto w-16 h-1 bg-brand"></div>
     </div>
   </div>
@@ -358,6 +511,120 @@
   </div>
 </section>
 
+<!-- PORTFOLIO GALLERY -->
+<section class="py-24 lg:py-32 bg-neutral-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-30 pointer-events-none">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-brand/20 blur-3xl float-slow"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-brand/10 blur-3xl"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14 gap-6">
+      <div class="reveal-left max-w-2xl">
+        <p class="text-xs uppercase tracking-[0.3em] text-brand mb-3">Portfolio Showcase</p>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight leading-tight">A Closer Look At <span class="text-brand">Our Work</span></h2>
+        <div class="mt-4 w-16 h-1 bg-brand"></div>
+        <p class="mt-6 text-neutral-400 leading-relaxed">A curated visual selection of recent commercial design & build projects across industries.</p>
+      </div>
+      <div class="reveal-right flex flex-wrap gap-2 text-xs font-semibold tracking-wider uppercase">
+        <button class="filter-btn px-4 py-2 border border-brand bg-brand text-white rounded-sm transition-all" data-filter="all">All</button>
+        <button class="filter-btn px-4 py-2 border border-white/20 text-neutral-300 hover:border-brand hover:text-brand rounded-sm transition-all" data-filter="office">Office</button>
+        <button class="filter-btn px-4 py-2 border border-white/20 text-neutral-300 hover:border-brand hover:text-brand rounded-sm transition-all" data-filter="healthcare">Healthcare</button>
+        <button class="filter-btn px-4 py-2 border border-white/20 text-neutral-300 hover:border-brand hover:text-brand rounded-sm transition-all" data-filter="hospitality">Hospitality</button>
+        <button class="filter-btn px-4 py-2 border border-white/20 text-neutral-300 hover:border-brand hover:text-brand rounded-sm transition-all" data-filter="fnb">F&B</button>
+      </div>
+    </div>
+
+    <!-- Masonry-style asymmetric grid -->
+    <div id="gallery" class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 stagger">
+      <!-- Tall left -->
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm row-span-2 aspect-[3/4] lg:aspect-auto" data-cat="office">
+        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent opacity-90"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Corporate Office</span>
+          <h3 class="mt-2 text-xl font-bold">Executive HQ Workspace</h3>
+          <p class="mt-1 text-sm text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500">A modern, flexible HQ designed around hybrid teams and brand presence.</p>
+        </div>
+        <div class="absolute top-4 right-4 w-9 h-9 bg-brand text-white flex items-center justify-center rounded-sm opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="healthcare">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Medical Centre</span>
+          <h3 class="mt-1 text-lg font-bold">Specialist Clinic Suite</h3>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="fnb">
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">F&B Outlet</span>
+          <h3 class="mt-1 text-lg font-bold">Boutique Café Concept</h3>
+        </div>
+      </a>
+
+      <!-- Wide -->
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm col-span-2 aspect-[2/1]" data-cat="hospitality">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Hospitality Venue</span>
+          <h3 class="mt-1 text-xl font-bold">Members Club Lounge</h3>
+          <p class="mt-1 text-sm text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500">A premium hospitality interior built for events, dining and rental flexibility.</p>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="office">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Co-Working</span>
+          <h3 class="mt-1 text-lg font-bold">Startup Collaboration Hub</h3>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="healthcare">
+        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Healthcare</span>
+          <h3 class="mt-1 text-lg font-bold">Day Surgery Centre</h3>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="fnb">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Restaurant</span>
+          <h3 class="mt-1 text-lg font-bold">Casual Dining Concept</h3>
+        </div>
+      </a>
+
+      <a href="#" class="gallery-item reveal group relative overflow-hidden rounded-sm aspect-square" data-cat="hospitality">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-brand font-bold">Boutique Hotel</span>
+          <h3 class="mt-1 text-lg font-bold">Lobby & Reception</h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="text-center mt-14 reveal">
+      <a href="#" class="inline-flex items-center gap-2 bg-brand text-white px-7 py-4 font-semibold rounded-sm hover:bg-brand-400 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-brand/40 transition-all duration-300 group">
+        View Full Portfolio
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="py-24 lg:py-32 bg-radial-warm relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
@@ -519,7 +786,7 @@
             </div>
             <div>
               <p class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Office</p>
-              <p class="font-semibold">[Office Address Line 1]<br/>[Singapore Postal Code]</p>
+              <p class="font-semibold">SG: [Office Address Line 1]<br/>[Singapore Postal Code]<br/><span class="text-neutral-500 text-sm font-normal">MY: [Office Address Line 1]<br/>[Malaysia Postal Code]</span></p>
             </div>
           </div>
         </div>
@@ -568,6 +835,7 @@
           <li>[hello@adevo.sg]</li>
           <li>[+65 0000 0000]</li>
           <li>[Office Address, Singapore]</li>
+          <li>[Office Address, Malaysia]</li>
         </ul>
         <div class="flex gap-3 mt-5">
           <a href="#" class="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-white hover:text-neutral-950 transition-colors rounded-sm" aria-label="Instagram">
@@ -630,6 +898,91 @@
       }
     }
     tick();
+  })();
+
+  /* ---------- Header scroll state ---------- */
+  (function () {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const onScroll = () => {
+      if (window.scrollY > 40) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  /* ---------- Mobile menu ---------- */
+  (function () {
+    const menu = document.getElementById('mobile-menu');
+    const open = document.getElementById('menu-toggle');
+    const close = document.getElementById('menu-close');
+    if (!menu || !open || !close) return;
+    open.addEventListener('click', () => menu.classList.add('open'));
+    close.addEventListener('click', () => menu.classList.remove('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  })();
+
+  /* ---------- Portfolio filter ---------- */
+  (function () {
+    const btns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+    if (!btns.length) return;
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = btn.dataset.filter;
+        btns.forEach(b => {
+          b.classList.remove('bg-brand', 'text-white', 'border-brand');
+          b.classList.add('border-white/20', 'text-neutral-300');
+        });
+        btn.classList.add('bg-brand', 'text-white', 'border-brand');
+        btn.classList.remove('border-white/20', 'text-neutral-300');
+        items.forEach(item => {
+          const match = f === 'all' || item.dataset.cat === f;
+          item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          if (match) {
+            item.style.display = '';
+            requestAnimationFrame(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            });
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => { item.style.display = 'none'; }, 400);
+          }
+        });
+      });
+    });
+  })();
+
+  /* ---------- Animated counters ---------- */
+  (function () {
+    const counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
+    const animate = (el) => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animate(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => io.observe(c));
   })();
 
   /* ---------- Scroll reveal ---------- */
