@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The ADEVO Lead Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --brand: #FF9500;
+    --brand-deep: #B36300;
+    --ink: #1C1710;
+    --body: #3D362C;
+    --muted: #7A7163;
+    --paper: #FDFCF9;
+    --panel: #F6F2EB;
+    --line: #E7E1D6;
+    --good: #2E7D4F;
+    --warn: #B3541E;
+    --bad: #B3262E;
+    --code-bg: #211C14;
+    --code-ink: #F3EDE2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --brand: #FFA31F;
+      --brand-deep: #FFB84D;
+      --ink: #F4EFE6;
+      --body: #CFC7B8;
+      --muted: #948A79;
+      --paper: #16120C;
+      --panel: #211B12;
+      --line: #352C1E;
+      --good: #66BB8A;
+      --warn: #E08A50;
+      --bad: #E57373;
+      --code-bg: #211B12;
+      --code-ink: #F3EDE2;
+    }
+  }
+  :root[data-theme="dark"] {
+    --brand: #FFA31F;
+    --brand-deep: #FFB84D;
+    --ink: #F4EFE6;
+    --body: #CFC7B8;
+    --muted: #948A79;
+    --paper: #16120C;
+    --panel: #211B12;
+    --line: #352C1E;
+    --good: #66BB8A;
+    --warn: #E08A50;
+    --bad: #E57373;
+    --code-bg: #211B12;
+    --code-ink: #F3EDE2;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---------- masthead ---------- */
+  .masthead { padding: 72px 0 40px; border-bottom: 3px solid var(--ink); }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brand-deep); font-weight: 600;
+  }
+  h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(38px, 6vw, 58px);
+    line-height: 1.02; letter-spacing: -0.02em;
+    color: var(--ink); margin: 14px 0 18px; font-weight: 800;
+    text-wrap: balance;
+  }
+  .standfirst { font-size: 18px; max-width: 62ch; margin: 0; }
+  .standfirst strong { color: var(--ink); }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--muted);
+  }
+  .meta-row b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- section chrome ---------- */
+  section { padding-top: 56px; }
+  .eyebrow {
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    border-top: 1px solid var(--line); padding-top: 14px;
+  }
+  .eyebrow .no { color: var(--brand-deep); font-weight: 600; }
+  h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(24px, 3.4vw, 32px); line-height: 1.12; letter-spacing: -0.015em;
+    color: var(--ink); margin: 10px 0 16px; font-weight: 700; text-wrap: balance;
+  }
+  h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 18.5px; color: var(--ink); margin: 30px 0 8px; font-weight: 700;
+  }
+  p { max-width: 68ch; margin: 0 0 14px; }
+  li { margin-bottom: 7px; max-width: 65ch; }
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
+  a { color: var(--brand-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .lead { font-size: 17.5px; color: var(--ink); }
+  .footnote { font-size: 13.5px; color: var(--muted); max-width: 68ch; }
+  em { color: var(--ink); }
+
+  /* ---------- callouts ---------- */
+  .thesis {
+    background: var(--panel); border-left: 4px solid var(--brand);
+    padding: 20px 24px; margin: 26px 0; border-radius: 0 6px 6px 0;
+  }
+  .thesis p { margin: 0; font-size: 17px; color: var(--ink); max-width: none; }
+  .redflag {
+    background: var(--panel); border-left: 4px solid var(--bad);
+    padding: 16px 20px; margin: 20px 0; border-radius: 0 6px 6px 0; font-size: 15px;
+  }
+  .redflag b { color: var(--bad); }
+  .notebox {
+    background: var(--panel); border-left: 4px solid var(--muted);
+    padding: 16px 20px; margin: 20px 0; border-radius: 0 6px 6px 0; font-size: 14.5px;
+  }
+
+  /* ---------- tables ---------- */
+  .tscroll { overflow-x: auto; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+  th {
+    text-align: left; font-family: 'IBM Plex Mono', monospace; font-weight: 600;
+    font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    padding: 10px 14px 8px 0; border-bottom: 2px solid var(--ink);
+  }
+  td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { color: var(--ink); font-weight: 600; }
+  .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; font-size: 13.5px; white-space: nowrap; }
+  .pill {
+    display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px 9px; border-radius: 99px; white-space: nowrap;
+  }
+  .pill.bad  { color: var(--bad);  border: 1px solid var(--bad); }
+  .pill.warn { color: var(--warn); border: 1px solid var(--warn); }
+  .pill.good { color: var(--good); border: 1px solid var(--good); }
+  .pill.zero { color: var(--muted); border: 1px solid var(--line); }
+
+  /* ---------- funnel diagram ---------- */
+  .funnel { margin: 28px 0 8px; }
+  .f-tier { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .f-box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .f-box.full { grid-column: 1 / -1; }
+  .f-box.dest { border: 2px solid var(--brand); background: var(--paper); }
+  .f-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--brand-deep); margin-bottom: 5px;
+  }
+  .f-box h4 { margin: 0 0 4px; font-family: 'Archivo', sans-serif; font-size: 15.5px; color: var(--ink); }
+  .f-box p { margin: 0; font-size: 13.5px; max-width: none; }
+  .f-arrow {
+    text-align: center; color: var(--muted); padding: 6px 0;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  }
+  .f-loop {
+    border: 1px dashed var(--line); border-radius: 8px; padding: 12px 16px;
+    font-size: 13.5px; color: var(--muted); margin-top: 12px;
+  }
+  .f-loop b { color: var(--ink); }
+  @media (max-width: 620px) { .f-tier { grid-template-columns: 1fr; } }
+
+  /* ---------- math block ---------- */
+  .mathblock {
+    background: var(--code-bg); color: var(--code-ink); border-radius: 10px;
+    padding: 22px 26px; margin: 20px 0; overflow-x: auto;
+  }
+  .mathblock table { min-width: 0; width: 100%; border-collapse: collapse; }
+  .mathblock td {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--code-ink);
+    border-bottom: 1px solid rgba(255,255,255,.12); padding: 8px 10px 8px 0;
+    font-variant-numeric: tabular-nums; font-weight: 400;
+  }
+  .mathblock tr:last-child td { border-bottom: none; }
+  .mathblock td:first-child { font-weight: 400; opacity: .85; }
+  .mathblock td:last-child { text-align: right; font-weight: 600; }
+  .mathblock .hl td { color: var(--brand); font-weight: 600; }
+
+  /* ---------- checklist ---------- */
+  .check { list-style: none; padding-left: 0; }
+  .check li {
+    padding-left: 30px; position: relative; margin-bottom: 10px; max-width: 68ch;
+  }
+  .check li::before {
+    content: ""; position: absolute; left: 0; top: 4px; width: 15px; height: 15px;
+    border: 2px solid var(--brand); border-radius: 4px;
+  }
+
+  /* ---------- roadmap ---------- */
+  .phase { display: grid; grid-template-columns: 118px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .phase:last-child { border-bottom: none; }
+  .phase .when {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600;
+    color: var(--brand-deep); letter-spacing: .06em; text-transform: uppercase; padding-top: 3px;
+  }
+  .phase h4 { margin: 0 0 6px; font-family: 'Archivo', sans-serif; font-size: 16.5px; color: var(--ink); }
+  .phase p { margin: 0; font-size: 14.5px; max-width: none; }
+  @media (max-width: 560px) { .phase { grid-template-columns: 1fr; gap: 4px; } }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Social Media &amp; Lead-Generation Proposal · Prepared for ADEVO</div>
+    <h1>The ADEVO Lead Machine</h1>
+    <p class="standfirst">How to turn social media into a predictable source of commercial fit-out enquiries — built on the conversion assets adevo.sg already has, the playbooks that demonstrably work for other interior design firms, and an honest audit of where ADEVO stands today.</p>
+    <div class="meta-row">
+      <span>Date <b>Aug 2026</b></span>
+      <span>Scope <b>Singapore first · MY as phase 2</b></span>
+      <span>Buyer <b>SME owners · office / F&amp;B / clinic</b></span>
+      <span>Capture <b>WhatsApp +65 9061 0477</b></span>
+    </div>
+  </header>
+
+  <!-- 1 · THESIS -->
+  <section>
+    <div class="eyebrow"><span class="no">01</span> The thesis</div>
+    <h2>The bottom of the funnel is already built. Social's only job is to feed it.</h2>
+    <p class="lead">adevo.sg now has what most competitors don't: an instant cost calculator, a free space-planning offer, a Singapore approvals guide, a real client on video (EU Holidays), and every path ending in WhatsApp. That is a finished conversion engine with almost nothing driving traffic into it.</p>
+    <p>The second thing to be clear-eyed about: <strong>ADEVO's buyer is a business owner, not a homeowner.</strong> The Instagram tactics that work for HDB-reno firms produce homeowner DMs. A commercial lead machine needs a dual track:</p>
+    <ul>
+      <li><strong>Volume track — Meta Click-to-WhatsApp ads.</strong> The exact funnel Singapore's reno giants run at scale, aimed instead at business-owner segments with commercial-only creative.</li>
+      <li><strong>Authority track — founder-led LinkedIn + Google reviews + YouTube case studies.</strong> The channels where office, clinic and F&amp;B decision-makers actually vet a contractor before they ever message one.</li>
+    </ul>
+    <div class="thesis">
+      <p><strong>The economics make this easy to justify:</strong> one won fit-out project pays for the entire year of this plan many times over. The machine doesn't need to go viral — it needs to produce a handful of qualified WhatsApp conversations per week and never miss one.</p>
+    </div>
+  </section>
+
+  <!-- 2 · AUDIT -->
+  <section>
+    <div class="eyebrow"><span class="no">02</span> Where ADEVO stands today</div>
+    <h2>Website-strong, everywhere-else weak — with one urgent repair</h2>
+    <p>We audited every channel a prospect might check in the five minutes after hearing ADEVO's name. The picture: the new landing page is ahead of the market, but the surrounding footprint is stale, still residential-flavoured, and in one case actively harmful.</p>
+
+    <div class="tscroll"><table>
+      <tr><th>Channel</th><th>Status</th><th>What we found</th></tr>
+      <tr><td>Google Business Profile</td><td><span class="pill warn">Unclaimed</span></td><td><b>5.0★ from 20 reviews</b> — ADEVO's single strongest proof asset — sitting on an apparently unclaimed listing with few photos, no posts, and a category ("Interior architect office") that doesn't match what buyers search. This rating appears nowhere on the landing page.</td></tr>
+      <tr><td>Houzz</td><td><span class="pill bad">Damaging</span></td><td>A <b>1.0★ profile ranks on page 1 for brand searches</b>, with a wrong address and residential-era copy. A prospect who googles "Ad-Evo reviews" sees 1 star above the fold, seconds after seeing 5.0 on Google.</td></tr>
+      <tr><td>Instagram <span class="num">@adevosg</span></td><td><span class="pill warn">Stale</span></td><td>70 followers, last posts ~10 months ago, bio still sells "Carpentry Works" and residential styling — off-message for architect-led commercial.</td></tr>
+      <tr><td>Facebook</td><td><span class="pill warn">Dormant</span></td><td>735 followers (the largest social audience) but near-zero engagement; latest visible post is a Valentine's greeting; intro still pitches residential; 4 reviews — below the threshold for a visible star rating.</td></tr>
+      <tr><td>LinkedIn</td><td><span class="pill warn">Empty</span></td><td>Company page has no About text, no posts, no banner; founder profile inactive. This is the channel where B2B buyers vet contractors — and it's not linked anywhere on adevo.sg.</td></tr>
+      <tr><td>YouTube / TikTok</td><td><span class="pill zero">Absent</span></td><td>No channel found. The EU Holidays testimonial — the firm's best trust asset — exists only on adevo.sg, invisible to search.</td></tr>
+      <tr><td>Blog / articles</td><td><span class="pill good">Active</span></td><td>~140 articles, publishing daily — a real engine. But bylines ("adevoadmin", contractor names) and legacy AI-flavoured titles undercut the expert-contractor voice.</td></tr>
+      <tr><td>Directories</td><td><span class="pill warn">Neglected</span></td><td>Empty HomeTrust shell (0 reviews, ranked ~2,454th) has still accumulated 1,163 views — proof that buyers look. Inconsistent name/address/email across listings.</td></tr>
+    </table></div>
+
+    <div class="redflag"><b>Repair before spending a dollar on ads:</b> claim the Google profile, respond to and dilute the Houzz 1.0★ (removal is rarely granted — claim it, reply professionally, ask 3–5 happy commercial clients to review there), rewrite the IG/FB bios to the commercial positioning, and put the 5.0★ Google badge on the landing page. Running paid traffic into a footprint that contradicts itself leaks conversions at the worst moment — right after the click.</div>
+  </section>
+
+  <!-- 3 · EVIDENCE -->
+  <section>
+    <div class="eyebrow"><span class="no">03</span> What the winners actually do</div>
+    <h2>Three playbooks, observed — and a gap ADEVO can own</h2>
+
+    <h3>Singapore's consumer-reno giants: always-on click-to-chat</h3>
+    <p>Reading the Meta Ad Library directly: <strong>Weiken runs ~28 simultaneous ads, nearly all ending in a chat button</strong>, not a website form. Carpenters has kept a price-in-the-headline ad ("$100,000 Cream Minimalist Design… Kempas Rd") running for 4+ months — cost transparency is the copy theme that survives. Swiss Interior turned one celebrity client story into an ad that ran from March to July. The pattern: <em>named projects, real prices, chat capture, and winning creatives left running for months.</em></p>
+
+    <h3>Global design &amp; build brands: content that compounds</h3>
+    <ul>
+      <li><strong>Cost-transparency content is the documented king.</strong> River Pools (US) built ~$35M in tracked sales from answering "how much does it cost" in public. Every ADEVO analogue ("what a café fit-out really costs in SG") feeds the calculator ADEVO already built.</li>
+      <li><strong>Founder authority compounds.</strong> Matt Risinger grew a build firm to ~$20M alongside a teach-everything YouTube channel; Oktra — the UK's leading office design &amp; build firm — runs its portfolio as searchable long-form case studies. Shanon's architect-on-site story is the same genre.</li>
+      <li><strong>Before/after short-form converts at tiny view counts</strong> (a documented remodeler example closed real projects off a 2,000-view reel), and comment-keyword DM automation ("comment PRICE") turns viewers into captured chats.</li>
+    </ul>
+
+    <h3>The gap</h3>
+    <p><strong>None of the Singapore commercial fit-out firms we checked run Meta ads at all</strong> (Conexus, Livspace SG, Ovon at time of audit). The consumer giants own homeowner attention; nobody is running WhatsApp-CTA ads aimed at the business owner planning an office, café or clinic. That's the white space this plan occupies.</p>
+  </section>
+
+  <!-- 4 · THE MACHINE -->
+  <section>
+    <div class="eyebrow"><span class="no">04</span> The machine</div>
+    <h2>One destination, five feeds, a loop that compounds</h2>
+    <p>Every piece of content and every ad — organic or paid — routes to a single destination: the cost calculator, then WhatsApp. Nothing scattered, everything measurable.</p>
+
+    <div class="funnel">
+      <div class="f-tier">
+        <div class="f-box">
+          <div class="f-label">Authority track · organic</div>
+          <h4>Founder-led LinkedIn · Google profile · YouTube case studies</h4>
+          <p>Costing teardowns, approvals war stories, "12,000 sqft in 8 weeks" project numbers. Where B2B buyers vet you.</p>
+        </div>
+        <div class="f-box">
+          <div class="f-label">Volume track · organic + paid</div>
+          <h4>IG/FB reels · Meta Click-to-WhatsApp ads</h4>
+          <p>Before/after transformations, site progress, cost-transparency hooks — aimed at business-owner segments only.</p>
+        </div>
+      </div>
+      <div class="f-arrow">▼ &nbsp;every post, bio and ad points to one link &nbsp;▼</div>
+      <div class="f-tier">
+        <div class="f-box full dest">
+          <div class="f-label">Single destination</div>
+          <h4>adevo.sg cost calculator → WhatsApp (+65 9061 0477)</h4>
+          <p>Tagged first message per channel (see §7) so every lead carries its source. Reply target: <b>under 5 minutes, always same-day</b> — speed-to-reply is the cheapest conversion lever in the whole system.</p>
+        </div>
+      </div>
+      <div class="f-arrow">▼</div>
+      <div class="f-tier">
+        <div class="f-box full">
+          <div class="f-label">Pipeline</div>
+          <h4>WhatsApp Business labels: New → Qualified → Site visit → Quoted → Won</h4>
+          <p>The free app's built-in labels + quick replies become the CRM. Weekly count per stage = the scoreboard.</p>
+        </div>
+      </div>
+      <div class="f-loop"><b>The compounding loop:</b> every handover triggers (1) a Google review ask, (2) a photo/video shoot, (3) a case-study post — which becomes next month's ad creative and retargeting fuel. Video viewers and site visitors are retargeted with the EU Holidays testimonial. The machine gets cheaper the longer it runs.</div>
+    </div>
+  </section>
+
+  <!-- 5 · CONTENT SYSTEM -->
+  <section>
+    <div class="eyebrow"><span class="no">05</span> Content system</div>
+    <h2>Five pillars, built for a 2–10 person firm</h2>
+    <p>This cadence is deliberately the <em>minimum</em> that works — designed to survive a busy project month, not to impress a marketing agency. Shanon's time cost: ~30–45 minutes a week of voice notes and phone clips; editing and posting are handled by whoever runs marketing (with the article engine already proving that capacity exists).</p>
+
+    <div class="tscroll"><table>
+      <tr><th>Pillar</th><th>Example (real ADEVO material)</th><th>Where</th><th>Cadence</th></tr>
+      <tr><td>Real numbers</td><td>"What a 1,200 sqft café fit-out really costs in SG (2026)" — ends at the calculator. Only ADEVO can stand behind published numbers; competitors quote blind.</td><td>LinkedIn · Reels · Blog</td><td class="num">1 / week</td></tr>
+      <tr><td>Proof</td><td>Before/after: Sláinte @ Paragon, Gong Yuan, Growtheum reception. EU Holidays video cut into 3–4 captioned vertical clips (hook in the first 3 seconds, captions on — most watch muted).</td><td>Reels · FB · YouTube</td><td class="num">1 / week</td></tr>
+      <tr><td>Founder authority</td><td>Shanon on approvals: "The 5 permits that decide your opening date." Architect-reads-the-floor-plan clips. Posted from her personal profile — person outperforms page on LinkedIn.</td><td>LinkedIn</td><td class="num">2 / week</td></tr>
+      <tr><td>Site progress</td><td>30-second phone time-lapses from live sites — with landlord/tenant permission cleared and <em>full PPE visible in every frame</em> (marketing that contradicts bizSAFE 3 is negative marketing).</td><td>Reels · Stories</td><td class="num">ad hoc</td></tr>
+      <tr><td>Handover</td><td>Every completed project: photo set → Google review ask → one case-study post with sqft + weeks. This is the loop that feeds everything else.</td><td>All + GBP</td><td class="num">every project</td></tr>
+    </table></div>
+
+    <p class="footnote">Production SOP to add to ADEVO's workflow: a photo/video-release clause in client contracts going forward; confidentiality check for pre-opening F&amp;B/clinic sites; a shared phone album per project so any team member's site photos become usable material.</p>
+  </section>
+
+  <!-- 6 · PAID PLAN -->
+  <section>
+    <div class="eyebrow"><span class="no">06</span> Paid plan</div>
+    <h2>Click-to-WhatsApp at the core — start small, scale on evidence</h2>
+    <p>Meta Click-to-WhatsApp ads open a chat directly from the ad — no form, no landing-page drop-off — and plug straight into the funnel ADEVO already runs. For high-ticket, sales-closed services they consistently produce fewer but <em>better</em> leads than instant forms.</p>
+
+    <div class="tscroll"><table>
+      <tr><th>Phase</th><th>Monthly budget</th><th>What runs</th></tr>
+      <tr><td>Months 1–2</td><td class="num">S$0 (organic only)</td><td>Fix-first repairs (§2), profiles relaunched, 8-week organic runway to find which creatives earn engagement. Ads before this leak money.</td></tr>
+      <tr><td>Months 3–4</td><td class="num">S$1,500–2,500</td><td>2–3 Click-to-WhatsApp campaigns: cost-transparency hook, EU Holidays story, before/after reel — business-owner interest segments, SG only. Winners identified by cost per <em>qualified</em> conversation.</td></tr>
+      <tr><td>Months 5–6+</td><td class="num">S$2,500–4,000</td><td>Scale winners; add retargeting (video viewers + site visitors served the EU Holidays testimonial); optional narrow LinkedIn test (S$500–1,000) for office-decision-maker titles.</td></tr>
+    </table></div>
+
+    <div class="notebox"><b>Honesty about benchmarks:</b> published SG cost-per-lead figures (median ≈S$30; home services S$15–40; B2B S$40–150) come mostly from ad-tool vendors. Plan on a wide band — <span class="num">S$25–100 per qualified conversation</span> — and let ADEVO's own first 60 days of data replace the industry numbers. The structure above is designed so that even the pessimistic end is comfortably profitable (see §8).</div>
+  </section>
+
+  <!-- 7 · TRACKING & COMPLIANCE -->
+  <section>
+    <div class="eyebrow"><span class="no">07</span> Tracking &amp; compliance</div>
+    <h2>Every lead carries its source; every message stays legal</h2>
+    <h3>The tracking spine</h3>
+    <p>WhatsApp links can't carry analytics tags into the chat — so the <strong>pre-filled first message is the tracking code</strong>. The site already sends "[From website]". Extend the same convention per channel:</p>
+    <div class="tscroll"><table>
+      <tr><th>Source</th><th>First message</th></tr>
+      <tr><td>Website</td><td class="num">[From website]</td></tr>
+      <tr><td>Instagram / Facebook organic</td><td class="num">[From IG] · [From FB]</td></tr>
+      <tr><td>Meta ads</td><td class="num">[From ad]</td></tr>
+      <tr><td>LinkedIn</td><td class="num">[From LinkedIn]</td></tr>
+      <tr><td>Google profile</td><td class="num">[From Google]</td></tr>
+    </table></div>
+    <ul>
+      <li>Label the source on every new chat at first touch; the weekly scoreboard is then just counting labels: conversations → qualified → site visits → quotes → won, by source.</li>
+      <li>One tagged calculator URL as the only link-in-bio everywhere, with the Meta pixel on the page — enables retargeting site visitors even before ads start.</li>
+    </ul>
+    <h3>Compliance guardrails (Singapore)</h3>
+    <ul>
+      <li><strong>No cold WhatsApp outreach.</strong> Unsolicited marketing messages to SG numbers fall under the Do-Not-Call provisions; this plan is 100% inbound — people message ADEVO first, which is clean opt-in.</li>
+      <li><strong>PDPA basics:</strong> store the lead list responsibly, honour opt-outs, and get written consent for client testimonials, project photography, and any staff or visitors appearing in site footage.</li>
+      <li><strong>Filming on live sites:</strong> landlord/MCST permission, pre-opening embargoes respected, PPE in every frame.</li>
+    </ul>
+  </section>
+
+  <!-- 8 · FUNNEL MATH -->
+  <section>
+    <div class="eyebrow"><span class="no">08</span> The arithmetic</div>
+    <h2>What the machine has to produce to pay for itself</h2>
+    <p>An illustrative steady-state month at the mid budget, using deliberately conservative rates — every assumption is ADEVO's to tighten with real data:</p>
+    <div class="mathblock"><table>
+      <tr><td>Ad spend</td><td>S$2,000 / month</td></tr>
+      <tr><td>Qualified WhatsApp conversations (at S$25–100 each)</td><td>20–80</td></tr>
+      <tr><td>→ Site visits / consultations (~25%)</td><td>5–20</td></tr>
+      <tr><td>→ Proposals issued (~half of visits)</td><td>3–10</td></tr>
+      <tr><td>→ Projects won (~1 in 4 proposals)</td><td>~1–2 / month</td></tr>
+      <tr class="hl"><td>Value of ONE typical commercial fit-out</td><td>S$150k–500k+</td></tr>
+      <tr class="hl"><td>Full-year cost of this entire plan (ads + production)</td><td>≈ S$30–45k</td></tr>
+    </table></div>
+    <p>Even if the funnel underperforms these rates by half, <strong>a single won project per quarter funds the machine for the year</strong>. Everything beyond that is margin — and the organic assets (reviews, case studies, LinkedIn authority) keep working at zero marginal cost.</p>
+  </section>
+
+  <!-- 9 · ROADMAP -->
+  <section>
+    <div class="eyebrow"><span class="no">09</span> 90-day roadmap</div>
+    <h2>Fix, feed, then fund</h2>
+    <div class="phase">
+      <div class="when">Weeks 1–2</div>
+      <div>
+        <h4>Repair the footprint</h4>
+        <p>Claim + build Google Business Profile (photos, correct category, weekly posts). Respond to and start diluting Houzz 1.0★. Rewrite IG/FB bios to architect-led commercial. Build the LinkedIn company page; link it from the site. Create YouTube; upload the EU Holidays film. Add the 5.0★ Google badge to adevo.sg. Standardise bylines to Shanon Ho / ADEVO Team. Fix name-address-email consistency everywhere.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 3–8</div>
+      <div>
+        <h4>Run the organic engine</h4>
+        <p>Pillar cadence live (§5). EU Holidays cut into vertical clips. First three "real numbers" cost posts published and pointed at the calculator. Shanon posting 2×/week on LinkedIn. Review asks at every handover. WhatsApp labels + quick replies + 5-minute reply SLA in place. Weekly scoreboard starts.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 9–13</div>
+      <div>
+        <h4>Turn on paid</h4>
+        <p>Launch 2–3 Click-to-WhatsApp campaigns from the creatives that earned organic engagement. S$1,500–2,500/month. Retargeting audiences building from day one (pixel + video viewers). Review cost per qualified conversation at week 13 against the S$25–100 band; scale or fix accordingly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · NOT DOING -->
+  <section>
+    <div class="eyebrow"><span class="no">10</span> Scope discipline</div>
+    <h2>What we're deliberately not doing (yet)</h2>
+    <ul>
+      <li><strong>TikTok</strong> — viable in this vertical (a SG reno platform cut acquisition costs ~26% with lookalikes) but it's a volume/consumer channel; revisit once the Meta engine is profitable.</li>
+      <li><strong>Qanvast / consumer marketplaces</strong> — they feed homeowner leads and skew residential; wrong ICP. Fix the empty HomeTrust shell, then deprioritise.</li>
+      <li><strong>Discount offers</strong> — attract price-shoppers and undercut the architect-led premium positioning. Cost <em>transparency</em>, never cost <em>cutting</em>.</li>
+      <li><strong>Malaysia targeting</strong> — phase 2, once SG numbers are proven; the WORQ KL project becomes the anchor case study when it starts.</li>
+      <li><strong>Marketing automation platforms / WhatsApp API</strong> — the free WhatsApp Business app (labels, quick replies, catalog) is enough until lead volume genuinely outgrows it.</li>
+    </ul>
+    <p class="footnote">Main risk is capacity, not strategy: the cadence in §5 is sized for a small firm, and the weekly scoreboard exists precisely so the plan gets judged on qualified conversations — not on follower counts or posting streaks. Sources for every claim in this proposal are available in the underlying research pack (channel audit, SG competitor ad-library observations, global case studies, paid benchmarks, B2B channel evidence).</p>
+  </section>
+
+</div>
+</body>
+</html>
